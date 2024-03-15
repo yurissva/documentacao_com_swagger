@@ -1,0 +1,458 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+      "title": "Swagger Library Manager - OpenAPI 3.0",
+      "description": "Esta é a documentação da API para gerenciamento de uma biblioteca",
+      "contact": {
+          "email": "apiteam@swagger.io"
+  },
+      "version": "1.0.0"
+},
+  "servers": [
+    {
+      "url": "http://localhost:3333"
+    }
+  ],
+  "tags": [
+    {
+      "name": "users",
+      "description": "Operações relacionadas a usuários"
+    },
+    {
+      "name": "books",
+      "description": "Operações relacionadas a livros"
+    },
+    {
+      "name": "emprestimos",
+      "description": "Operações relacionadas a empréstimos"
+    }
+  ],
+  "paths": {
+    "/users": {
+      "post": {
+        "summary": "Criar usuário",
+        "description": "Cria um novo usuário",
+        "requestBody": {
+          "content": {
+              "apllication/json": {
+                  "schema": {
+                      "$ref": "#components/schemas/User"
+                  },
+                  "examples": {
+                      "user": {
+                          "value": {
+                              "name": "yuri",
+                              "email": "yuri@mail.com",
+                              "telefone": "41 9999-9999"
+                          }
+                      }
+                  }
+              }
+          }
+      },
+        "responses": {
+          "201": {
+            "description": "Usuário criado com sucesso"
+          },
+          "400": {
+            "description": "Requisição inválida"
+          }
+        },
+        "tags": ["users"]
+      },
+      "get": {
+        "summary": "Listar todos os usuários",
+        "description": "Obtém uma lista de todos os usuários",
+        "responses": {
+          "200": {
+            "description": "Lista de usuários obtida com sucesso"
+          }
+        },
+        "tags": ["users"]
+      }
+    },
+    "/users/{user_id}": {
+      "get": {
+        "summary": "Obter usuário por ID",
+        "description": "Obtém um usuário específico pelo ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "user_id",
+            "description": "ID do usuário a ser obtido",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Usuário obtido com sucesso"
+          },
+          "404": {
+            "description": "Usuário não encontrado"
+          }
+        },
+        "tags": ["users"]
+      },
+      "put": {
+        "summary": "Atualizar usuário",
+        "description": "Atualiza um usuário existente",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "user_id",
+            "description": "ID do usuário a ser atualizado",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Usuário atualizado com sucesso"
+          },
+          "404": {
+            "description": "Usuário não encontrado"
+          }
+        },
+        "tags": ["users"]
+      },
+      "patch": {
+        "summary": "Atualizar status do usuário",
+        "description": "Atualiza o status de um usuário existente",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "user_id",
+            "description": "ID do usuário a ter o status atualizado",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Status do usuário atualizado com sucesso"
+          },
+          "404": {
+            "description": "Usuário não encontrado"
+          }
+        },
+        "tags": ["users"]
+      },
+      "delete": {
+        "summary": "Excluir usuário",
+        "description": "Exclui um usuário existente",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "user_id",
+            "description": "ID do usuário a ser excluído",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Usuário excluído com sucesso"
+          },
+          "404": {
+            "description": "Usuário não encontrado"
+          }
+        },
+        "tags": ["users"]
+      }
+    },
+    "/books": {
+      "post": {
+        "summary": "Criar livro",
+        "description": "Cria um novo livro",
+        "responses": {
+          "201": {
+            "description": "Livro criado com sucesso"
+          },
+          "400": {
+            "description": "Requisição inválida"
+          }
+        },
+        "tags": ["books"]
+      },
+      "get": {
+        "summary": "Listar todos os livros",
+        "description": "Obtém uma lista de todos os livros",
+        "responses": {
+          "200": {
+            "description": "Lista de livros obtida com sucesso"
+          }
+        },
+        "tags": ["books"]
+      }
+    },
+    "/books/{id}": {
+      "get": {
+        "summary": "Obter livro por ID",
+        "description": "Obtém um livro específico pelo ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID do livro a ser obtido",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Livro obtido com sucesso"
+          },
+          "404": {
+            "description": "Livro não encontrado"
+          }
+        },
+        "tags": ["books"]
+      },
+      "put": {
+        "summary": "Atualizar livro",
+        "description": "Atualiza um livro existente",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID do livro a ser atualizado",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Livro atualizado com sucesso"
+          },
+          "404": {
+            "description": "Livro não encontrado"
+          }
+        },
+        "tags": ["books"]
+      },
+      "patch": {
+        "summary": "Atualizar status do livro",
+        "description": "Atualiza o status de um livro existente",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID do livro a ter o status atualizado",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Status do livro atualizado com sucesso"
+          },
+          "404": {
+            "description": "Livro não encontrado"
+          }
+        },
+        "tags": ["books"]
+      },
+      "delete": {
+        "summary": "Excluir livro",
+        "description": "Exclui um livro existente",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID do livro a ser excluído",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Livro excluído com sucesso"
+          },
+          "404": {
+            "description": "Livro não encontrado"
+          }
+        },
+        "tags": ["books"]
+      }
+    },
+    "/emprestimos": {
+      "post": {
+        "summary": "Realizar empréstimo",
+        "description": "Realiza um novo empréstimo de livro para um usuário",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "ID do usuário que está realizando o empréstimo",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "book_id",
+            "in": "path",
+            "description": "ID do livro que está sendo emprestado",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Empréstimo realizado com sucesso"
+          },
+          "400": {
+            "description": "Requisição inválida"
+          }
+        },
+        "tags": ["emprestimos"]
+      },
+      "get": {
+        "summary": "Listar empréstimos de um usuário",
+        "description": "Obtém uma lista de todos os empréstimos de um usuário",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "ID do usuário para o qual os empréstimos estão sendo listados",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lista de empréstimos obtida com sucesso"
+          }
+        },
+        "tags": ["emprestimos"]
+      }
+    },
+    "emprestimos/{id}":{
+      "get": {
+        "summary": "Obter total de empréstimos de um usuário",
+        "description": "Obtém o total de empréstimos de um usuário",
+        "operationId": "id",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "description": "ID do usuário para o qual o total de empréstimos está sendo obtido",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Total de empréstimos obtido com sucesso"
+          }
+        },
+        "tags": ["emprestimos"]
+      },
+      "patch": {
+        "summary": "Devolver livro emprestado",
+        "description": "Atualiza o status de um livro emprestado para devolvido",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "ID do usuário que está realizando a devolução",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "book_id",
+            "in": "path",
+            "description": "ID do livro que está sendo devolvido",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Livro devolvido com sucesso!"
+          },
+          "404": {
+            "description": "Operação não relizada!"
+          }
+        },
+        "tags": ["emprestimos"]
+      }
+    }
+  },
+"components": {
+    "schemas": {
+        "User": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "telefone": {
+                    "type": "string"
+                }
+              }
+          },
+          "books": {
+            "type": "object",
+            "properties": {
+                "title": {
+                    "type": "string"
+                },
+                "author": {
+                    "type": "string"
+                },
+                "category": {
+                    "type": "string"
+                },
+                "pages": {
+                  "type":"string"
+                }
+              }
+          },
+          "emprestimos": {
+            "type": "integer",
+            "properties": {
+                "{user_id}": {
+                    "type": "integer"
+                },
+                "{book_id}": {
+                    "type": "integer"
+                }
+              }
+          }
+      }
+  }
+}
+           
+       
+   
